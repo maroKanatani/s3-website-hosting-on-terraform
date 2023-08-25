@@ -4,3 +4,28 @@ resource "aws_s3_bucket" "static_website" {
     Name = "trial-site"
   }
 }
+
+resource "aws_s3_bucket_policy" "static_website" {
+  bucket = aws_s3_bucket.static_website.id
+  policy = data.aws_iam_policy_document.static_website.json
+}
+
+data "aws_iam_policy_document" "static_website" {
+  statement {
+    sid    = "Aollow Cloudfront"
+    effect = "Allow"
+    principals {
+      type = "AWS"
+      identifiers = [
+        aws_cloudfront_origin_access_identity.static_website.iam_arn
+      ]
+    }
+    actions = [
+      "s3:GetObject"
+    ]
+    resources = [
+      "${aws_s3_bucket.static_website.arn}/*"
+    ]
+  }
+
+}
