@@ -1,0 +1,19 @@
+name: Upload content to S3
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-aws
+      - run: |
+          echo HelloWorld > index.html
+          aws s3 cp index.html s3://${{ env.WEB_BUCKET_NAME }}/ --cache-control 'no-cache'
+        shell: bash

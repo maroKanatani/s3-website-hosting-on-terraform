@@ -1,0 +1,11 @@
+name: setup aws credentials
+description: setup aws credentials
+
+runs:
+  using: "composite"
+  steps:
+    - uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: ${{ env.GITHUB_IAM_ROLE_ARN }}
+        role-session-name: ${{ github.event.repository.name }}-${{ github.run_id }}
+        aws-region: ap-northeast-1
