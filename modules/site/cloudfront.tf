@@ -26,6 +26,11 @@ resource "aws_cloudfront_distribution" "static_website" {
     default_ttl            = 60
     max_ttl                = 60
     compress               = true
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.basic_auth.arn
+    }
   }
   restrictions {
     geo_restriction {
@@ -44,4 +49,17 @@ resource "aws_cloudfront_origin_access_identity" "static_website" {
 
 output "website_url" {
   value = "https://${aws_cloudfront_distribution.static_website.domain_name}/"
+}
+
+# Basic 認証を行う CloudFront Function
+resource "aws_cloudfront_function" "basic_auth" {
+  name    = "static-website-basicauth"
+  runtime = "cloudfront-js-1.0"
+  publish = true
+  code = templatefile(
+    "${path.module}/function/basic-auth.js",
+    {
+      authString = base64encode("${var.basicauth_username}:${var.basicauth_password}")
+    }
+  )
 }
