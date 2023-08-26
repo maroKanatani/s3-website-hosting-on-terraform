@@ -1,0 +1,22 @@
+{
+  "name": "s3-website-hosting-on-terraform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vrt:run": "reg-suit run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:maroKanatani/s3-website-hosting-on-terraform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "reg-keygen-git-hash-plugin": "^0.12.2",
+    "reg-notify-github-plugin": "^0.12.2",
+    "reg-publish-s3-plugin": "^0.12.2",
+    "reg-suit": "^0.12.2"
+  }
+}
