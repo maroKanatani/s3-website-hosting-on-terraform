@@ -1,3 +1,9 @@
+module "github" {
+  source = "../../modules/github"
+
+  id_provider_arn = local.id_provider_arn
+}
+
 module "site" {
   source = "../../modules/site"
 
