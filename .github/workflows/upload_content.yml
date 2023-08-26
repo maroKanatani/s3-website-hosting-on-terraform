@@ -6,6 +6,10 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   IAM_ROLE_ARN: ${{ secrets.IAM_ROLE_ARN }}
   WEB_BUCKET_NAME: ${{ secrets.WEB_BUCKET_NAME }}
