@@ -8,6 +8,7 @@ concurrency:
 
 env:
   IAM_ROLE_ARN: ${{ secrets.IAM_ROLE_ARN }}
+  WEB_BUCKET_NAME: ${{ secrets.WEB_BUCKET_NAME }}
 
 jobs:
   deploy:
