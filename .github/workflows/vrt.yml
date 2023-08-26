@@ -5,6 +5,7 @@ on:
 env:
   REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENT_ID }}
   WEB_BUCKET_NAME: ${{ secrets.WEB_BUCKET_NAME }}
+  IAM_ROLE_ARN: ${{ secrets.IAM_ROLE_ARN }}
 
 permissions:
   contents: read
