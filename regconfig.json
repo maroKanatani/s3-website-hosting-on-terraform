@@ -18,7 +18,8 @@
     },
     "reg-publish-s3-plugin": {
       "bucketName": "$WEB_BUCKET_NAME",
-      "enableACL": false
+      "enableACL": false,
+      "customDomain": "$CUSTOM_DOMAIN"
     }
   }
 }
