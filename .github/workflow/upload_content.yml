@@ -6,6 +6,9 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
+env:
+  GITHUB_IAM_ROLE_ARN: ${{ secrets.IAM_ROLE_ARN }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,6 +17,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-aws
       - run: |
-          echo HelloWorld > index.html
+          echo HelloWorld12345 > index.html
           aws s3 cp index.html s3://${{ env.WEB_BUCKET_NAME }}/ --cache-control 'no-cache'
         shell: bash
